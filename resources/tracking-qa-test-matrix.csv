@@ -1,0 +1,11 @@
+event_name,scenario,expected_behavior,validation_method,privacy_check,priority
+page_view,first page load,one event for the intended page view,debug event stream,No URL query secrets or sensitive page content,High
+sign_up_started,user opens registration flow,event fires once at defined trigger,network payload inspection,No password or form field values,High
+sign_up_completed,registration succeeds,event fires only after confirmed success,compare application state and analytics event,Use approved user identifier only,High
+checkout_started,checkout flow begins,event includes approved cart context,debug payload and event schema,No payment credentials or card data,High
+purchase_completed,server confirms purchase,event fires once for confirmed transaction,reconcile against transaction record,No raw payment details,High
+form_submitted,valid form submission,event fires after successful submission,automated browser test,No free-text form content unless explicitly approved,Medium
+consent_updated,consent preference changes,event reflects the resulting consent state,consent-state test,Do not fire optional tracking before consent,High
+logout_completed,session ends,event fires once and identity state resets,session lifecycle test,Do not retain identifiers beyond policy,Medium
+cross_domain_navigation,approved cross-domain journey,session attribution behaves as specified,controlled journey test,Do not leak identifiers to unapproved domains,Medium
+duplicate_callback,SDK callback repeats,event is deduplicated according to contract,replay or retry test,No duplicate personal data,Medium
