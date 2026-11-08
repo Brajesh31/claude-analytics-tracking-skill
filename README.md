@@ -91,3 +91,45 @@ Provide the application type, analytics platform, key user journeys, conversion 
 ## Practical Principle
 
 Do not track everything by default. Track what helps answer a real question, and validate the event data before using it to make product or marketing decisions.
+
+## Measurement Design Principles
+
+Treat analytics as a product contract, not a collection of tracking snippets. Define the decisions the data should support before selecting events. A useful measurement plan connects a business objective to a user journey, a measurable action, a stable event definition, and a validation method.
+
+### Event design standards
+
+- Use consistent, action-oriented event names such as checkout_started or account_created.
+- Define the precise trigger, including whether an event represents an attempt, success, failure, or completion.
+- Give every property a type, meaning, allowed values, and owner.
+- Avoid embedding dynamic values in event names.
+- Keep UI labels and event definitions separate so a visual redesign does not silently change the analytics contract.
+- Document duplicate, retry, offline, and server-confirmation behavior.
+
+### Recommended implementation lifecycle
+
+1. **Define the decision.** Identify the product or marketing question and the metric that will inform it.
+2. **Map the journey.** Describe entry points, meaningful actions, conversion steps, and exit conditions.
+3. **Specify the taxonomy.** Define events, triggers, properties, identity behavior, destinations, and owners.
+4. **Review privacy.** Establish consent requirements, data minimization, retention, deletion, and access controls.
+5. **Implement.** Add tracking at a reliable application or server boundary rather than relying only on fragile UI selectors.
+6. **Validate.** Compare expected and actual event payloads in a test environment.
+7. **Monitor.** Watch event volume, missing properties, duplicates, attribution, and conversion anomalies.
+8. **Maintain.** Version the taxonomy, review changes, and retire obsolete events deliberately.
+
+## Supporting Resources
+
+| Resource | Purpose |
+|---|---|
+| [Event taxonomy template](resources/event-taxonomy-template.md) | Define event names, triggers, property contracts, owners, and review rules. |
+| [Tracking QA test matrix](resources/tracking-qa-test-matrix.csv) | Track representative test scenarios and expected event behavior. |
+| [Analytics governance checklist](resources/analytics-governance-checklist.md) | Review privacy, consent, quality, launch readiness, and ongoing ownership. |
+
+## Data Quality and Privacy Controls
+
+Do not send passwords, authentication tokens, payment credentials, private message contents, or unnecessary personal data as analytics properties. Treat URLs, user identifiers, and free-text fields as potential sources of sensitive information. Apply consent rules before optional tracking fires, and verify that test traffic is not mixed into production metrics.
+
+Validate critical conversion events against an authoritative application or transaction state. A client-side click is not proof that a payment, subscription, account creation, or other business operation succeeded. Where appropriate, use server-confirmed events as the source of truth and define deduplication behavior between client and server events.
+
+## Handoff Expectations
+
+A tracking implementation is ready for handoff when the event taxonomy is documented, tests cover expected and failure paths, payloads match the schema, privacy controls have been reviewed, dashboards use consistent metric definitions, and each critical event has an owner. The handoff should also identify known gaps and the procedure for disabling or rolling back a broken event stream.
