@@ -1,40 +1,93 @@
-# Analytics Tracking
+# claude-analytics-tracking-skill
+
+A Claude Code skill for planning, implementing, auditing, and improving product and marketing analytics tracking.
 
 ## Overview
 
-This repository provides a Claude skill for analytics tracking. It organizes practical guidance into a repeatable workflow for implementing and maintaining the related process.
+Analytics is useful only when events and properties support decisions. This skill helps define a measurement plan, map user journeys, implement event tracking, validate data collection, and maintain consistent analytics across web and application experiences.
 
-## What It Covers
+## Main Capabilities
 
-- Core concepts and terminology.
-- Recommended workflows and implementation considerations.
-- Practical guidance for planning, execution, and validation.
-- Original supporting files included with the skill.
+- Define business and product measurement goals.
+- Create event taxonomies and tracking plans.
+- Implement page-view and interaction tracking.
+- Configure conversion and funnel events.
+- Plan UTM parameter conventions.
+- Work with analytics platforms and tag managers.
+- Validate event payloads and property consistency.
+- Audit existing tracking implementations.
+- Identify gaps, duplicate events, and unreliable metrics.
+- Document ownership and maintenance responsibilities.
 
-## Repository Structure
+## Initial Assessment
 
-```text
-SKILL.md
+Before implementation, establish:
+
+1. Which business or product decisions the data should support.
+2. The primary user journeys and conversion actions.
+3. Existing analytics tools and event definitions.
+4. The application's technical stack.
+5. Privacy, consent, and data-retention requirements.
+6. Who owns implementation and ongoing maintenance.
+
+## Installation
+
+```bash
+git clone https://github.com/Brajesh31/claude-analytics-tracking-skill.git ~/.claude/skills/analytics-tracking
 ```
 
-## Prerequisites
+## Usage
 
-- A Claude-compatible environment with skill support.
-- Relevant project source code and configuration.
-- Required development tools and platform access for the tasks being performed.
+Invoke the skill when setting up or auditing analytics:
 
-## Getting Started
+```text
+/analytics-tracking
+```
 
-1. Read `SKILL.md` and review the workflow.
-2. Install the skill in your Claude environment's supported skills directory.
-3. Provide the relevant project context, constraints, and desired outcome.
-4. Apply the instructions to the task.
-5. Test the resulting changes in a suitable development environment before release.
+Provide the application type, analytics platform, key user journeys, conversion goals, and privacy constraints.
 
-## Best Practices
+## Tracking Plan Structure
 
-Keep secrets out of source control, use least-privilege access, and validate changes through automated checks. Confirm platform-specific behavior against current official documentation.
+| Field | Description |
+|---|---|
+| Event name | Stable event identifier |
+| Trigger | When the event should fire |
+| Properties | Context needed for analysis |
+| User context | Relevant anonymous or authenticated identity |
+| Destination | Analytics platform or data pipeline |
+| Owner | Responsible team or role |
+| Validation | How event correctness is tested |
 
-## License
+## Recommended Workflow
 
-MIT. See [LICENSE](LICENSE).
+1. Define the decisions and questions analytics must support.
+2. Map the user journey and key conversion points.
+3. Create a consistent event naming convention.
+4. Define required properties and allowed values.
+5. Implement tracking at the correct application layer.
+6. Apply consent and privacy controls.
+7. Validate events in development and staging.
+8. Check for duplicates, missing events, and incorrect values.
+9. Document the final tracking plan.
+10. Monitor data quality after release.
+
+## Quality Checklist
+
+- Events represent meaningful user actions.
+- Names and properties follow a consistent convention.
+- Events fire once at the intended point.
+- User identity is handled consistently.
+- Sensitive information is not collected unnecessarily.
+- Consent preferences are respected.
+- Conversion definitions are documented.
+- Test events are separated from production data.
+- Dashboards use validated definitions.
+
+## Repository Contents
+
+- `SKILL.md`: Main analytics implementation and measurement guidance.
+- `README.md`: Tracking plan, workflow, and quality checklist.
+
+## Practical Principle
+
+Do not track everything by default. Track what helps answer a real question, and validate the event data before using it to make product or marketing decisions.
